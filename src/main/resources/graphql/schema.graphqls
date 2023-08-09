@@ -1,0 +1,31 @@
+type Query {
+    bookById(id: ID): Book
+    filterBook(filter: Filter): Book
+    filterBooks(filters: [Where!]): [Book]
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+input Where {
+    filter: Filter
+    and:[Where!]
+    or: [Where!]
+    not: Where
+}
+
+input Filter {
+    attributeId: String
+    operator: String
+    attributeValue:String
+}
